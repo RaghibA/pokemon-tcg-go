@@ -1,12 +1,16 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"github.com/lib/pq"
+	"gorm.io/gorm"
+)
 
 type Card struct {
 	gorm.Model
 	Name   string
-	Types  []string
-	Value  int32
+	Types  pq.StringArray `gorm:"type:text[]"`
+	Value  float64
 	Img    string
+	CardId string
 	UserId uint
 }

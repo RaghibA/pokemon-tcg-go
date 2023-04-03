@@ -18,6 +18,7 @@ func Run() {
 
 	// Register routers
 	routes.User(r)
+	routes.Card(r)
 
 	r.Run(":8080")
 }

@@ -174,7 +174,7 @@ func DeleteUserHandler(c *gin.Context) {
 func AuthenticateUserHandler(c *gin.Context) {
 	user, _ := c.Get("user")
 
-	c.JSON(http.StatusNoContent, gin.H{
+	c.JSON(http.StatusAccepted, gin.H{
 		"message": "Authenticated",
 		"data":    user,
 	})

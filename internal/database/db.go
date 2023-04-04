@@ -37,9 +37,9 @@ func Connect() {
 	log.Println("DB connected")
 	db.Logger = logger.Default.LogMode(logger.Info)
 	log.Println("Running DB migrations...")
-	db.AutoMigrate(&models.User{}, &models.Card{})
+	db.AutoMigrate(&models.User{}, &models.Card{}) //* Migrate models to postgres
 
-	PokeDb = DbInstance{
+	PokeDb = DbInstance{ //* Instantiate db struct
 		Db: db,
 	}
 }

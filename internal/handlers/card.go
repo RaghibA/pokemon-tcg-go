@@ -121,7 +121,6 @@ func GetCardsHandler(c *gin.Context) {
 }
 
 // Delete user card
-// Get user cards
 func DeleteCardHandler(c *gin.Context) {
 
 	// Get user from jwt cookie

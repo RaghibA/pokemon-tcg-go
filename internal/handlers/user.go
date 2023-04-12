@@ -155,16 +155,15 @@ func LoginUserHandler(c *gin.Context) {
 		return
 	}
 
-	// Return JWT
-	c.SetSameSite(http.SameSiteLaxMode)
-	c.SetCookie("Authorization", tokenString, 36000*24*30, "", "", false, true)
-
-	c.JSON(http.StatusOK, gin.H{})
+	// Return token
+	c.JSON(http.StatusOK, gin.H{"token": tokenString})
 }
 
 //* Delete User Handler
 func DeleteUserHandler(c *gin.Context) {
 	user, _ := c.Get("user")
+
+	//! Need to delete/overwrite cookie here too
 
 	database.PokeDb.Db.Delete(&user, user)
 	c.JSON((http.StatusOK), gin.H{})
@@ -178,4 +177,9 @@ func AuthenticateUserHandler(c *gin.Context) {
 		"message": "Authenticated",
 		"data":    user,
 	})
+}
+
+// Logout user handler
+func LogoutUserHandler(c *gin.Context) {
+	// send new cookie to delete/overwrite old one
 }

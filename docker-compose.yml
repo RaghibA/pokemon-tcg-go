@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   web:
-    build: .
+    build:
+      dockerfile: Dockerfile.server
     env_file:
       - .env
     ports:
@@ -10,6 +11,14 @@ services:
     volumes:
       - .:/usr/src/app
     command: go run ./cmd/server/main.go -b 0.0.0.0
+  client:
+    build:
+      dockerfile: Dockerfile.client
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    command: npm run start
   db:
     env_file:
       - .env
